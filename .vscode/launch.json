@@ -1,0 +1,44 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CloudConfigServerApplication<cloud_config_server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.cloud_config_server.CloudConfigServerApplication",
+            "projectName": "cloud_config_server",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DemoProjectApplication<demo_project>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.demo_project.DemoProjectApplication",
+            "projectName": "demo_project",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-EmployeeApplication<employee>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.employee.EmployeeApplication",
+            "projectName": "employee",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ScheduleApplication<schedule>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.schedule.ScheduleApplication",
+            "projectName": "schedule",
+            "args": ""
+        }
+    ]
+}
