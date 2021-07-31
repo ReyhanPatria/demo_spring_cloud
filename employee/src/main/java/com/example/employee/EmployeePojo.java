@@ -1,9 +1,7 @@
-package com.example.employee.model.pojo;
+package com.example.employee;
 
 import java.time.LocalDateTime;
 
-import com.example.employee.model.Employee;
-import com.example.employee.model.Shift;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class EmployeePojo {
@@ -32,11 +30,6 @@ public class EmployeePojo {
 
         LocalDateTime jamKeluarObject = employee.getJamKeluar();
         this.jamKeluar = (jamKeluarObject == null) ? "-" : jamKeluarObject.toString();
-    
-        for(Shift s: employee.getShiftSet()) {
-            if(this.shift == null || this.shift < s.getId())
-                this.shift = s.getId();
-        }
     }
 
     public Employee toEntity() {

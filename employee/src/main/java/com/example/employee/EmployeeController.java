@@ -1,14 +1,10 @@
-package com.example.employee.controller;
+package com.example.employee;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
-
-import com.example.employee.model.Employee;
-import com.example.employee.model.pojo.EmployeePojo;
-import com.example.employee.service.EmployeeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -54,7 +50,7 @@ public class EmployeeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
         Employee employee = employeeExists.get();
-        return new ResponseEntity<>(employee.toPojo(), HttpStatus.FOUND);
+        return new ResponseEntity<>(employee.toPojo(), HttpStatus.OK);
     }
 
     @GetMapping(path = "employee", params = "nama")

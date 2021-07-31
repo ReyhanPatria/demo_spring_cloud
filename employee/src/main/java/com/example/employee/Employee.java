@@ -1,20 +1,14 @@
-package com.example.employee.model;
+package com.example.employee;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
-
-import com.example.employee.model.pojo.EmployeePojo;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Employee {
@@ -38,9 +32,6 @@ public class Employee {
 
     private String status;
 
-    @ManyToMany(mappedBy = "employeeSet")
-    private Set<Shift> shiftSet;
-
     @Column(name = "jam_masuk")
     private LocalDateTime jamMasuk;
 
@@ -48,7 +39,7 @@ public class Employee {
     private LocalDateTime jamKeluar;
 
     public Employee() {
-        this.shiftSet = new HashSet<>();
+        // Default empty constructor
     }
 
     public Employee(String nama,
@@ -61,8 +52,6 @@ public class Employee {
         this.status = status;
         this.jamMasuk = jamMasuk;
         this.jamKeluar = jamKeluar;
-
-        this.shiftSet = new HashSet<>();
     }
 
     public Employee(EmployeePojo employeePojo) {
@@ -77,8 +66,6 @@ public class Employee {
 
         String jamKeluarString = employeePojo.getJamKeluar();
         this.jamKeluar = (jamKeluarString.equals("-")) ? null : LocalDateTime.parse(jamKeluarString, formatter);
-        
-        this.shiftSet = new HashSet<>();
     }
 
     public EmployeePojo toPojo() {
@@ -115,15 +102,6 @@ public class Employee {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-    
-    @JsonBackReference
-    public Set<Shift> getShiftSet() {
-        return shiftSet;
-    }
-
-    public void setShiftSet(Set<Shift> shiftSet) {
-        this.shiftSet = shiftSet;
     }
 
     public LocalDateTime getJamMasuk() {
