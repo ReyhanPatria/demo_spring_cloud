@@ -25,7 +25,7 @@ class EmployeeServiceTests {
     @Test
     void insertEmployee_ShouldSucceed_WhenSaveIsCalled() {
         // Given
-        EmployeePojo employeePojo = new EmployeePojo("REY", "Foresta", "WFH", null, "-", "-");
+        EmployeePojo employeePojo = new EmployeePojo(1, "REY", "Foresta", "WFH", null, "-", "-");
         Employee employee = employeePojo.toEntity();
         
         // When
@@ -51,7 +51,7 @@ class EmployeeServiceTests {
     @Test
     void getEmployeeById_ShouldSucceed_WhenFindByIdIsCalled() {
         // Given
-        EmployeePojo employeePojo = new EmployeePojo("REY", "Foresta", "WFH", null, "-", "-");
+        EmployeePojo employeePojo = new EmployeePojo(1, "REY", "Foresta", "WFH", null, "-", "-");
         Employee employee = employeePojo.toEntity();
         employeeRepository.save(employee);
 
@@ -73,7 +73,7 @@ class EmployeeServiceTests {
         // Given
         String nama = "REY";
 
-        EmployeePojo employeePojo = new EmployeePojo(nama, "Foresta", "WFH", null, "-", "-");
+        EmployeePojo employeePojo = new EmployeePojo(1, nama, "Foresta", "WFH", null, "-", "-");
         Employee employee = employeePojo.toEntity();
         employeeRepository.save(employee);
 

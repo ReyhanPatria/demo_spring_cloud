@@ -55,6 +55,7 @@ public class Employee {
     }
 
     public Employee(EmployeePojo employeePojo) {
+        this.id = employeePojo.getId();
         this.nama = employeePojo.getNama();
         this.lokasi = employeePojo.getLokasi();
         this.status = employeePojo.getStatus();

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class EmployeePojo {
+    private Integer id;
     private String nama;
     private String lokasi;
     private String status;
@@ -21,6 +22,7 @@ public class EmployeePojo {
     }
 
     public EmployeePojo(Employee employee) {
+        this.id = employee.getId();
         this.nama = employee.getNama();
         this.lokasi = employee.getLokasi();
         this.status = employee.getStatus();
@@ -32,7 +34,8 @@ public class EmployeePojo {
         this.jamKeluar = (jamKeluarObject == null) ? "-" : jamKeluarObject.toString();
     }
 
-    public EmployeePojo(String nama, String lokasi, String status, Integer shift, String jamMasuk, String jamKeluar) {
+    public EmployeePojo(Integer id, String nama, String lokasi, String status, Integer shift, String jamMasuk, String jamKeluar) {
+        this.id = id;
         this.nama = nama;
         this.lokasi = lokasi;
         this.status = status;
@@ -43,6 +46,14 @@ public class EmployeePojo {
 
     public Employee toEntity() {
         return new Employee(this);
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNama() {

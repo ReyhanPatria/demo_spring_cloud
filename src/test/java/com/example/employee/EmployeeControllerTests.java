@@ -31,7 +31,7 @@ class EmployeeControllerTests {
 
     @Test
     void insertEmployee_ShouldSucceed_WhenJsonIsValid() throws JsonProcessingException, Exception {
-        EmployeePojo employeePojo = new EmployeePojo("REY", "Foresta", "WFH", null, "-", "-");
+        EmployeePojo employeePojo = new EmployeePojo(1, "REY", "Foresta", "WFH", null, "-", "-");
         Employee employee = employeePojo.toEntity();
 
         when(employeeService.insertEmployee(employee)).thenReturn(employee);
@@ -74,7 +74,7 @@ class EmployeeControllerTests {
 
     @Test
     void getAllEmployee_ShouldSucceed_WhenIterableIsNotEmpty() throws Exception{
-        Employee employee = new EmployeePojo("REY", "Foresta", "WFH", null, "-", "-").toEntity();
+        Employee employee = new EmployeePojo(1, "REY", "Foresta", "WFH", null, "-", "-").toEntity();
         when(employeeService.getAllEmployee()).thenReturn(IterableUtil.iterable(employee));
 
         this.mockMvc.perform(
@@ -86,9 +86,9 @@ class EmployeeControllerTests {
 
     @Test
     void getEmployeeById_ShouldSucceed_WhenIdIsValid() throws Exception {
-        EmployeePojo employeePojo = new EmployeePojo("REY", "Foresta", "WFH", null, "-", "-");
         Integer id = 1;
-
+        EmployeePojo employeePojo = new EmployeePojo(id, "REY", "Foresta", "WFH", null, "-", "-");
+        
         when(employeeService.getEmployeeById(id)).thenReturn(Optional.of(employeePojo.toEntity()));
 
         this.mockMvc.perform(
@@ -97,7 +97,7 @@ class EmployeeControllerTests {
         )
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.notNullValue()))
-        .andExpect(MockMvcResultMatchers.jsonPath("$.nama", Matchers.is("REY")));
+        .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(id)));
     }
 
     @Test
@@ -116,7 +116,7 @@ class EmployeeControllerTests {
     @Test
     void getEmployeeByNama_ShouldSucceed_WhenNamaIsValid() throws Exception {
         String nama = "REY";
-        EmployeePojo employeePojo = new EmployeePojo(nama, "Foresta", "WFH", null, "-", "-");
+        EmployeePojo employeePojo = new EmployeePojo(1, nama, "Foresta", "WFH", null, "-", "-");
 
         when(employeeService.getEmployeeByNama(nama)).thenReturn(Optional.of(employeePojo.toEntity()));
 

@@ -16,7 +16,7 @@ class EmployeeRepositoryTests {
     void findByNama_ShouldEmployeeFound_WhenNamaExists() {
         // Given
         String nama = "REY";
-        EmployeePojo employeePojo = new EmployeePojo(nama, "Foresta", "WFH", null, "-", "-");
+        EmployeePojo employeePojo = new EmployeePojo(1, nama, "Foresta", "WFH", null, "-", "-");
         employeeRepository.save(employeePojo.toEntity());
 
         // When
