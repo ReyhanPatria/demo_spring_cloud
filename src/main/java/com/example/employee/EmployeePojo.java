@@ -32,6 +32,15 @@ public class EmployeePojo {
         this.jamKeluar = (jamKeluarObject == null) ? "-" : jamKeluarObject.toString();
     }
 
+    public EmployeePojo(String nama, String lokasi, String status, Integer shift, String jamMasuk, String jamKeluar) {
+        this.nama = nama;
+        this.lokasi = lokasi;
+        this.status = status;
+        this.shift = shift;
+        this.jamMasuk = jamMasuk;
+        this.jamKeluar = jamKeluar;
+    }
+
     public Employee toEntity() {
         return new Employee(this);
     }
