@@ -106,10 +106,11 @@ class EmployeeControllerTests {
 
         when(employeeService.getEmployeeById(id)).thenReturn(Optional.empty());
 
-        this.mockMvc.perform(MockMvcRequestBuilders
-            .get("/employee/1")
-            .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(MockMvcResultMatchers.status().isNotFound());
+        this.mockMvc.perform(
+            MockMvcRequestBuilders.get("/employee/1")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isNotFound()
+        );
     }
 
     @Test
