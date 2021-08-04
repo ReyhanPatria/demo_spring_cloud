@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name = "employeeFeignClient", url = "https://demo-project-employee.herokuapp.com/") 
 public interface EmployeeFeignClient {
+    @GetMapping("/employees")
+    public Iterable<EmployeePojo> getAllEmployee();
+
     @GetMapping(value = "employee/{id}")
     public EmployeePojo getEmployeeById(@PathVariable Integer id);
 }

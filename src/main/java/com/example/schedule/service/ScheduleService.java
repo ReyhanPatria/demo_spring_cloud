@@ -6,10 +6,10 @@ import java.util.Optional;
 import java.util.Random;
 
 import com.example.schedule.model.Employee;
-import com.example.schedule.repository.EmployeeRepository;
 import com.example.schedule.model.Schedule;
-import com.example.schedule.repository.ScheduleRepository;
 import com.example.schedule.model.Shift;
+import com.example.schedule.model.pojo.EmployeePojo;
+import com.example.schedule.repository.ScheduleRepository;
 import com.example.schedule.repository.ShiftRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +19,16 @@ import org.springframework.stereotype.Service;
 public class ScheduleService {
     private final ScheduleRepository scheduleRepository;
     private final ShiftRepository shiftRepository;
-    private final EmployeeRepository employeeRepository;
+    private final EmployeeFeignClient employeeFeignClient;
 
     @Autowired
     public ScheduleService(
             ScheduleRepository scheduleRepository,
             ShiftRepository shiftRepository,
-            EmployeeRepository employeeRepository) {
+            EmployeeFeignClient employeeFeignClient) {
         this.scheduleRepository = scheduleRepository;
         this.shiftRepository = shiftRepository;
-        this.employeeRepository = employeeRepository;
+        this.employeeFeignClient = employeeFeignClient;
     }
 
     public Iterable<Schedule> getAllSchedule() {
@@ -52,9 +52,11 @@ public class ScheduleService {
         Schedule newSchedule = new Schedule();
         newSchedule = scheduleRepository.save(newSchedule);
 
-        Iterable<Employee> employeeIterable = employeeRepository.findAll();
+        Iterable<EmployeePojo> employeeIterable = employeeFeignClient.getAllEmployee();
         List<Employee> employeeList = new ArrayList<>();
-        employeeIterable.forEach(employeeList::add);
+        for(EmployeePojo ePojo: employeeIterable) {
+            employeeList.add(ePojo.toEntity());
+        }
         Integer employeeCount = employeeList.size();
 
         for(Integer i = 0; i < Schedule.SHIFTS_PER_SCHEDULE; i++) {

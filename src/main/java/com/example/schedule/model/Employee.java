@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Employee {
-    public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATE_TIME_PATTERN = "yyyy-MM-d'T'HH:mm";
 
     @Id
     @GeneratedValue(
@@ -66,6 +66,7 @@ public class Employee {
     }
 
     public Employee(EmployeePojo employeePojo) {
+        this.id = employeePojo.getId();
         this.nama = employeePojo.getNama();
         this.lokasi = employeePojo.getLokasi();
         this.status = employeePojo.getStatus();
