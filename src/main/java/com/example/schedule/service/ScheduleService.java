@@ -9,6 +9,7 @@ import com.example.schedule.model.Employee;
 import com.example.schedule.model.Schedule;
 import com.example.schedule.model.Shift;
 import com.example.schedule.model.pojo.EmployeePojo;
+import com.example.schedule.repository.EmployeeFeignClient;
 import com.example.schedule.repository.ScheduleRepository;
 import com.example.schedule.repository.ShiftRepository;
 
@@ -49,9 +50,11 @@ public class ScheduleService {
      * @return a Schedule object
      */
     public Schedule generateSchedule() {
+        // Create new schedule
         Schedule newSchedule = new Schedule();
-        newSchedule = scheduleRepository.save(newSchedule);
+        scheduleRepository.save(newSchedule);
 
+        // Get all employees
         Iterable<EmployeePojo> employeeIterable = employeeFeignClient.getAllEmployee();
         List<Employee> employeeList = new ArrayList<>();
         for(EmployeePojo ePojo: employeeIterable) {
@@ -59,19 +62,24 @@ public class ScheduleService {
         }
         Integer employeeCount = employeeList.size();
 
+
         for(Integer i = 0; i < Schedule.SHIFTS_PER_SCHEDULE; i++) {
+            // Create the shift
             Shift newShift = new Shift();
             newShift.setSchedule(newSchedule);
 
+            // Assign employees to shift
             for(Integer j = 0; j < Shift.EMPLOYEES_PER_SHIFT; j++) {
                 if(employeeCount > 0) {
                     int index = new Random().nextInt(employeeCount);
                     Employee selectedEmployee = employeeList.remove(index); 
+
                     newShift.assignEmployee(selectedEmployee);
                     employeeCount--;
                 }
             }
 
+            // Assign schedule to shft
             newSchedule.assignShift(newShift);
             shiftRepository.save(newShift);
         }
