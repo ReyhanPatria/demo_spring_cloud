@@ -41,9 +41,17 @@ class ScheduleServiceTests {
 
     @BeforeEach
     void setUp() {
+        this.scheduleService = new ScheduleService(
+            scheduleRepository, 
+            shiftRepository, 
+            employeeFeignClient
+        );
+    }
+
+    void setDummyEmployeeData() {
         Integer totalEmployee = Schedule.SHIFTS_PER_SCHEDULE * Shift.EMPLOYEES_PER_SHIFT;
-        
-        employeeFeignClient = mock(EmployeeFeignClient.class);
+
+        this.employeeFeignClient = mock(EmployeeFeignClient.class);
         when(employeeFeignClient.getAllEmployee()).thenAnswer(
             new Answer<Iterable<EmployeePojo>>(){
                 @Override
@@ -121,13 +129,16 @@ class ScheduleServiceTests {
 
     @Test
     void generateSchedule_ShouldSucceed_WhenFiveShiftsWithThreeEmployeesIsSaved() {
+        // Given
+        setDummyEmployeeData();
+        
         // When
         scheduleService.generateSchedule();
 
         // Then
         // Verify number of times shift is called
         ArgumentCaptor<Shift> newShift = ArgumentCaptor.forClass(Shift.class);
-        verify(shiftRepository, times(5)).save(newShift.capture());
+        verify(shiftRepository, times(Schedule.SHIFTS_PER_SCHEDULE)).save(newShift.capture());
         Assertions.assertThat(newShift.getValue()).isNotNull();
         Assertions.assertThat(newShift.getValue().getEmployeeSet())
             .hasSize(Shift.EMPLOYEES_PER_SHIFT);
@@ -137,6 +148,7 @@ class ScheduleServiceTests {
     void generateSchedule_ShouldSucceed_WhenEmployeeDataIsGottenSuccessfully() {
         // Given
         Integer totalEmployee = Schedule.SHIFTS_PER_SCHEDULE * Shift.EMPLOYEES_PER_SHIFT;
+        setDummyEmployeeData();
 
         // When
         scheduleService.generateSchedule();

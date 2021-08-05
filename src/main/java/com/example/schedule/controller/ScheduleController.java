@@ -36,7 +36,7 @@ public class ScheduleController {
         }
 
         Schedule schedule = scheduleExists.get();
-        return new ResponseEntity<>(schedule.toPojo(), HttpStatus.FOUND);
+        return new ResponseEntity<>(schedule.toPojo(), HttpStatus.OK);
     }
 
     @GetMapping(path = "schedule/generate")
