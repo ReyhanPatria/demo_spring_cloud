@@ -17,6 +17,7 @@ import com.example.schedule.model.pojo.EmployeePojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -45,6 +46,7 @@ public class Employee {
     private String status;
 
     @ManyToMany(mappedBy = "employeeSet")
+    @EqualsAndHashCode.Exclude
     private Set<Shift> shiftSet = new HashSet<>();
 
     @Column(name = "jam_masuk")

@@ -18,7 +18,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -50,6 +52,8 @@ public class Shift {
             referencedColumnName = "id")
     )
     @JsonIgnore
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Employee> employeeSet = new HashSet<>();
 
     @ManyToOne

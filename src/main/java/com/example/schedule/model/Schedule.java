@@ -14,7 +14,9 @@ import com.example.schedule.model.pojo.SchedulePojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -36,6 +38,8 @@ public class Schedule {
     private Integer id;
 
     @OneToMany(mappedBy = "schedule")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Shift> shiftSet = new HashSet<>();
 
     public void assignShift(Shift shift) {
