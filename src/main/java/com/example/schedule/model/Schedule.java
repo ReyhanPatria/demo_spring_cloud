@@ -12,7 +12,14 @@ import javax.persistence.SequenceGenerator;
 
 import com.example.schedule.model.pojo.SchedulePojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Schedule {
     public static final Integer SHIFTS_PER_SCHEDULE = 5;
 
@@ -29,11 +36,7 @@ public class Schedule {
     private Integer id;
 
     @OneToMany(mappedBy = "schedule")
-    private Set<Shift> shiftSet;
-
-    public Schedule() {
-        this.shiftSet = new HashSet<>();
-    }
+    private Set<Shift> shiftSet = new HashSet<>();
 
     public void assignShift(Shift shift) {
         this.shiftSet.add(shift);
@@ -41,21 +44,5 @@ public class Schedule {
 
     public SchedulePojo toPojo() {
         return new SchedulePojo(this);
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Set<Shift> getShiftSet() {
-        return shiftSet;
-    }
-
-    public void setShift(Set<Shift> shiftSet) {
-        this.shiftSet = shiftSet;
     }
 }

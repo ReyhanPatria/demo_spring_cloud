@@ -6,6 +6,13 @@ import com.example.schedule.model.Employee;
 import com.example.schedule.model.Shift;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class EmployeePojo {
     private Integer id;
     private String nama;
@@ -18,10 +25,6 @@ public class EmployeePojo {
 
     @JsonProperty("jam_keluar")
     private String jamKeluar;
-
-    public EmployeePojo() {
-        // Default empty constructor
-    }
 
     public EmployeePojo(Employee employee) {
         this.id = employee.getId();
@@ -41,79 +44,7 @@ public class EmployeePojo {
         }
     }
 
-    public EmployeePojo(Integer id, 
-            String nama, 
-            String lokasi, 
-            String status, 
-            Integer shift, 
-            String jamMasuk,
-            String jamKeluar) {
-        this.id = id;
-        this.nama = nama;
-        this.lokasi = lokasi;
-        this.status = status;
-        this.shift = shift;
-        this.jamMasuk = jamMasuk;
-        this.jamKeluar = jamKeluar;
-    }
-
     public Employee toEntity() {
         return new Employee(this);
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
-    public String getLokasi() {
-        return lokasi;
-    }
-
-    public void setLokasi(String lokasi) {
-        this.lokasi = lokasi;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Integer getShift() {
-        return shift;
-    }
-
-    public void setShift(Integer shift) {
-        this.shift = shift;
-    }
-
-    public String getJamMasuk() {
-        return jamMasuk;
-    }
-
-    public void setJamMasuk(String jamMasuk) {
-        this.jamMasuk = jamMasuk;
-    }
-
-    public String getJamKeluar() {
-        return jamKeluar;
-    }
-
-    public void setJamKeluar(String jamKeluar) {
-        this.jamKeluar = jamKeluar;
     }
 }
