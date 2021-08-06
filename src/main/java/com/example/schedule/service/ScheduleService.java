@@ -13,24 +13,16 @@ import com.example.schedule.repository.EmployeeFeignClient;
 import com.example.schedule.repository.ScheduleRepository;
 import com.example.schedule.repository.ShiftRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class ScheduleService {
     private final ScheduleRepository scheduleRepository;
     private final ShiftRepository shiftRepository;
     private final EmployeeFeignClient employeeFeignClient;
-
-    @Autowired
-    public ScheduleService(
-            ScheduleRepository scheduleRepository,
-            ShiftRepository shiftRepository,
-            EmployeeFeignClient employeeFeignClient) {
-        this.scheduleRepository = scheduleRepository;
-        this.shiftRepository = shiftRepository;
-        this.employeeFeignClient = employeeFeignClient;
-    }
 
     public Iterable<Schedule> getAllSchedule() {
         return scheduleRepository.findAll();

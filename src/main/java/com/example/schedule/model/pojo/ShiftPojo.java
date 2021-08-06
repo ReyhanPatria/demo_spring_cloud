@@ -9,12 +9,11 @@ import com.example.schedule.model.Employee;
 import com.example.schedule.model.Shift;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 
-public class ShiftPojo {
-    private Map<String, List<EmployeeDetail>> properties;
+import lombok.Data;
 
-    public ShiftPojo() {
-        this.properties = new HashMap<>();
-    }
+@Data
+public class ShiftPojo {
+    private Map<String, List<EmployeeDetail>> properties = new HashMap<>();
 
     public ShiftPojo(Shift shift) {
         String shiftId = "shift_" + shift.getId();

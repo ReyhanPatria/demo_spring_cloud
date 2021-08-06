@@ -14,9 +14,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
 import com.example.schedule.model.pojo.EmployeePojo;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Employee {
     public static final String DATE_TIME_PATTERN = "yyyy-MM-d'T'HH:mm";
 
@@ -39,31 +46,14 @@ public class Employee {
     private String status;
 
     @ManyToMany(mappedBy = "employeeSet")
-    private Set<Shift> shiftSet;
+    @EqualsAndHashCode.Exclude
+    private Set<Shift> shiftSet = new HashSet<>();
 
     @Column(name = "jam_masuk")
     private LocalDateTime jamMasuk;
 
     @Column(name = "jam_keluar")
     private LocalDateTime jamKeluar;
-
-    public Employee() {
-        this.shiftSet = new HashSet<>();
-    }
-
-    public Employee(String nama,
-            String lokasi,
-            String status, 
-            LocalDateTime jamMasuk,
-            LocalDateTime jamKeluar) {
-        this.nama = nama;
-        this.lokasi = lokasi;
-        this.status = status;
-        this.jamMasuk = jamMasuk;
-        this.jamKeluar = jamKeluar;
-
-        this.shiftSet = new HashSet<>();
-    }
 
     public Employee(EmployeePojo employeePojo) {
         this.id = employeePojo.getId();
@@ -78,68 +68,9 @@ public class Employee {
 
         String jamKeluarString = employeePojo.getJamKeluar();
         this.jamKeluar = (jamKeluarString.equals("-")) ? null : LocalDateTime.parse(jamKeluarString, formatter);
-        
-        this.shiftSet = new HashSet<>();
     }
 
     public EmployeePojo toPojo() {
         return new EmployeePojo(this);
     }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
-    public String getLokasi() {
-        return lokasi;
-    }
-
-    public void setLokasi(String lokasi) {
-        this.lokasi = lokasi;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-    
-    @JsonBackReference
-    public Set<Shift> getShiftSet() {
-        return shiftSet;
-    }
-
-    public void setShiftSet(Set<Shift> shiftSet) {
-        this.shiftSet = shiftSet;
-    }
-
-    public LocalDateTime getJamMasuk() {
-        return jamMasuk;
-    }
-
-    public void setJamMasuk(LocalDateTime jamMasuk) {
-        this.jamMasuk = jamMasuk;
-    }
-
-    public LocalDateTime getJamKeluar() {
-        return jamKeluar;
-    }
-
-    public void setJamKeluar(LocalDateTime jamKeluar) {
-        this.jamKeluar = jamKeluar;
-    }        
 }

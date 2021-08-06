@@ -16,7 +16,16 @@ import javax.persistence.SequenceGenerator;
 import com.example.schedule.model.pojo.ShiftPojo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Shift {
     public static final Integer EMPLOYEES_PER_SHIFT = 3; 
     
@@ -43,20 +52,17 @@ public class Shift {
             referencedColumnName = "id")
     )
     @JsonIgnore
-    private Set<Employee> employeeSet;
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private Set<Employee> employeeSet = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "schedule_id", referencedColumnName = "id")
     @JsonIgnore
     private Schedule schedule;
 
-    public Shift() {
-        this.employeeSet = new HashSet<>();
-    }
-
     public Shift(Schedule schedule) {
         this.schedule = schedule;
-        this.employeeSet = new HashSet<>();
     }
 
     public void assignEmployee(Employee employee) {
@@ -65,29 +71,5 @@ public class Shift {
 
     public ShiftPojo toPojo() {
         return new ShiftPojo(this);
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Set<Employee> getEmployeeSet() {
-        return employeeSet;
-    }
-
-    public void setEmployeSet(Set<Employee> employeeSet) {
-        this.employeeSet = employeeSet;
-    }
-
-    public Schedule getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
     }
 }

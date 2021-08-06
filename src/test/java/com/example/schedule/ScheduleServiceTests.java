@@ -111,8 +111,6 @@ class ScheduleServiceTests {
         // Then
         // Verify a new schedule object is generated
         Assertions.assertThat(generatedSchedule).isNotNull();
-        Assertions.assertThat(generatedSchedule.getShiftSet())
-            .hasSize(Schedule.SHIFTS_PER_SCHEDULE);
     }
 
     @Test

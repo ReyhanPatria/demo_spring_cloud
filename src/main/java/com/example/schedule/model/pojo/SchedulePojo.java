@@ -10,12 +10,11 @@ import com.example.schedule.model.Schedule;
 import com.example.schedule.model.Shift;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 
-public class SchedulePojo {
-    private Map<String, List<ShiftDetail>> properties;
+import lombok.Data;
 
-    public SchedulePojo() {
-        this.properties = new HashMap<>();
-    }
+@Data
+public class SchedulePojo {
+    private Map<String, List<ShiftDetail>> properties = new HashMap<>();
 
     public SchedulePojo(Schedule schedule) {
         List<ShiftDetail> shiftDetailList = new ArrayList<>();
