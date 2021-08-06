@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +24,7 @@ public class EmployeeController {
     }
 
     @PostMapping(path = "employee/insert")
-    public ResponseEntity<EmployeePojo> insertEmployee(@RequestBody @Valid EmployeePojo employeePojo) {
+    public ResponseEntity<EmployeePojo> insertEmployee(@RequestBody EmployeePojo employeePojo) {
         employeeService.insertEmployee(employeePojo.toEntity());
         return new ResponseEntity<>(employeePojo, HttpStatus.OK);
     }
