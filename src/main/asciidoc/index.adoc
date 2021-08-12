@@ -1,0 +1,78 @@
+= API Documentation
+:hardbreaks-option:
+
+== Schedule
+All endpoints regarding schedule data
+
+=== Get all schedules
+Retrieve all available schedules
+
+==== Example Request
+===== CURL Request
+include::{snippets}\schedule\get-all\not-empty\curl-request.adoc[]
+
+===== HTTP Request
+include::{snippets}\schedule\get-all\not-empty\http-request.adoc[]
+
+===== HTTPie Request
+include::{snippets}\schedule\get-all\not-empty\httpie-request.adoc[]
+
+
+==== Example Response
+===== Response Body
+Returns an array of JSON schedule objects
+include::{snippets}\schedule\get-all\not-empty\response-body.adoc[]
+
+===== HTTP Response
+include::{snippets}\schedule\get-all\not-empty\http-response.adoc[]
+
+
+
+=== Get schedule by id
+Gets a schedule object by its ID
+
+==== Example Request
+===== CURL Request
+include::{snippets}\schedule\get-by-id\success\curl-request.adoc[]
+
+===== HTTP Request
+include::{snippets}\schedule\get-by-id\success\http-request.adoc[]
+
+===== HTTPie Request
+include::{snippets}\schedule\get-by-id\success\httpie-request.adoc[]
+
+
+==== Example Response
+===== Response Body
+Schedule object in JSON format, with 5 shift attributes corresponding to its id, each containing an array of 3 employee names for the shift
+include::{snippets}\schedule\get-by-id\success\response-body.adoc[]
+
+===== HTTP Response
+include::{snippets}\schedule\get-by-id\success\http-response.adoc[]
+
+===== Error Response
+include::{snippets}\schedule\get-by-id\fail\http-response.adoc[]
+
+
+
+=== Generate new schedule
+Generate a new schedule with each shift containing randomly selected employee names
+
+==== Example Request
+===== CURL Request
+include::{snippets}\schedule\generate\curl-request.adoc[]
+
+===== HTTP Request
+include::{snippets}\schedule\generate\http-request.adoc[]
+
+===== HTTPie Request
+include::{snippets}\schedule\generate\httpie-request.adoc[]
+
+
+==== Example Response
+===== Response Body
+Schedule object in JSON format, with 5 shift attributes corresponding to its id, each containing an array of 3 employee names for the shift
+include::{snippets}\schedule\generate\response-body.adoc[]
+
+===== HTTP Response
+include::{snippets}\schedule\generate\http-response.adoc[]

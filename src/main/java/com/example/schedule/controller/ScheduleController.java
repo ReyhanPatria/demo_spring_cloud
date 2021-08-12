@@ -1,5 +1,7 @@
 package com.example.schedule.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import com.example.schedule.model.Schedule;
@@ -20,8 +22,13 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
     @GetMapping(path = "schedules")
-    public Iterable<Schedule> getAllSchedules() {
-        return scheduleService.getAllSchedule();
+    public Iterable<SchedulePojo> getAllSchedules() {
+        Iterable<Schedule> scheduleList = scheduleService.getAllSchedule();
+        List<SchedulePojo> schedulePojoList = new ArrayList<>();
+        for(Schedule s: scheduleList) {
+            schedulePojoList.add(s.toPojo());
+        }
+        return schedulePojoList;
     }
 
     @GetMapping(path = "schedule/{id}")
