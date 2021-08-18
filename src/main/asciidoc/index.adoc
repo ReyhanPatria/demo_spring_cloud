@@ -1,0 +1,35 @@
+= Employee API
+
+== GET
+=== Get all employees
+==== Request example
+include::{snippets}/get/all/http-request.adoc[]
+
+==== Response example
+include::{snippets}/get/all/http-response.adoc[]
+
+
+=== Get employee by ID
+==== Request example
+include::{snippets}/get/by-id/http-request.adoc[]
+
+==== Response example
+include::{snippets}/get/by-id/http-response.adoc[]
+
+
+=== Get employee by name
+==== Request example
+include::{snippets}/get/by-name/http-request.adoc[]
+
+==== Response example
+include::{snippets}/get/by-name/http-response.adoc[]
+
+
+
+== POST
+=== Insert employee
+==== Request example
+include::{snippets}/post/insert/http-request.adoc[]
+
+==== Response example
+include::{snippets}/post/insert/http-response.adoc[]
