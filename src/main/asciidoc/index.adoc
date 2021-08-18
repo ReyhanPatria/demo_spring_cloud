@@ -2,30 +2,32 @@
 
 == GET
 === Get all employees
-==== Request Example
-include::{snippets}\get\get-all\http-request.adoc[]
+==== Request example
+include::{snippets}/get/all/http-request.adoc[]
 
-==== Response Example
-include::{snippets}\get\get-all\http-response.adoc[]
+==== Response example
+include::{snippets}/get/all/http-response.adoc[]
+
 
 === Get employee by ID
-==== Request Example
-include::{snippets}\get\get-by-id\http-request.adoc[]
+==== Request example
+include::{snippets}/get/by-id/http-request.adoc[]
 
-==== Response Example
-include::{snippets}\get\get-by-id\http-response.adoc[]
+==== Response example
+include::{snippets}/get/by-id/http-response.adoc[]
 
-=== Get employee by nama
-==== Request Example
-include::{snippets}\get\get-by-nama\http-request.adoc[]
 
-==== Response Example
-include::{snippets}\get\get-by-nama\http-response.adoc[]
+=== Get employee by name
+==== Request example
+include::{snippets}/get/by-name/http-request.adoc[]
 
+==== Response example
+include::{snippets}/get/by-name/http-response.adoc[]
 
 == POST
 === Insert employee
-include::{snippets}\post\insert\http-request.adoc[]
+==== Request example
+include::{snippets}/post/insert/http-request.adoc[]
 
-==== Response Example
-include::{snippets}\post\insert\http-response.adoc[]
+==== Response example
+include::{snippets}/post/insert/http-response.adoc[]
