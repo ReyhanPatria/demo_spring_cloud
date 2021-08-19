@@ -19,32 +19,6 @@
 
 	<dependencies>
 
-		<!-- Spring REST Docs dependency -->
-
-		<!-- Mock MVC -->
-		<dependency>
-			<groupId>org.springframework.restdocs</groupId>
-			<artifactId>spring-restdocs-mockmvc</artifactId>
-			<version>2.0.5.RELEASE</version>
-		</dependency>
-
-		<!-- WebTestClient -->
-		<!-- <dependency>
-			<groupId>org.springframework.restdocs</groupId>
-			<artifactId>spring-restdocs-webtestclient</artifactId>
-			<version>2.0.5.RELEASE</version>
-		</dependency> -->
-
-
-		<!-- REST-Assured -->
-		<!-- <dependency>
-			<groupId>org.springframework.restdocs</groupId>
-			<artifactId>spring-restdocs-restassured</artifactId>
-			<version>2.0.5.RELEASE</version>
-		</dependency> -->
-
-		<!-- Spring REST Docs dependency -->
-
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -115,38 +89,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
-			<!-- Spring REST Docs plugin -->
-			<plugin> 
-				<groupId>org.asciidoctor</groupId>
-				<artifactId>asciidoctor-maven-plugin</artifactId>
-				<version>1.5.8</version>
-				<executions>
-					<execution>
-						<id>generate-docs</id>
-						<!-- Phase in which to build the HTML -->
-						<phase>prepare-package</phase> 
-						<goals>
-							<goal>process-asciidoc</goal>
-						</goals>
-						<configuration>
-							<sourceDocumentName>index.adoc</sourceDocumentName>
-							<backend>html</backend>
-							<doctype>book</doctype>
-							<!-- Snippets directory -->
-							<snippets>${project.build.directory}/generated-snippets</snippets>
-						</configuration>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency> 
-						<groupId>org.springframework.restdocs</groupId>
-						<artifactId>spring-restdocs-asciidoctor</artifactId>
-						<version>2.0.5.RELEASE</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-			<!-- Spring REST Docs plugin -->
 
 		</plugins>
 	</build>

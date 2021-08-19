@@ -9,25 +9,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.assertj.core.util.IterableUtil;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.restdocs.RestDocumentationContextProvider;
-import org.springframework.restdocs.RestDocumentationExtension;
-import org.springframework.restdocs.mockmvc.MockMvcRestDocumentation;
-import org.springframework.restdocs.operation.preprocess.Preprocessors;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 @WebMvcTest(EmployeeController.class)
-@ExtendWith(RestDocumentationExtension.class)
 class EmployeeControllerTests {
     @Autowired
     private MockMvc mockMvc;
@@ -38,16 +29,6 @@ class EmployeeControllerTests {
     @MockBean
     private EmployeeService employeeService;
 
-    // Build Mock MVC to have documentaion provider
-    @BeforeEach
-    void setUp(WebApplicationContext webApplicationContext,
-            RestDocumentationContextProvider restDocumentation) {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
-            .apply(MockMvcRestDocumentation.documentationConfiguration(restDocumentation))
-            .build();
-    }
-
-    // Documented tests
     @Test
     void insertEmployee_ShouldSucceed_WhenJsonIsValid() throws JsonProcessingException, Exception {
         EmployeePojo employeePojo = new EmployeePojo(1, "REY", "Foresta", "WFH", null, "-", "-");
@@ -63,15 +44,7 @@ class EmployeeControllerTests {
         )
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.notNullValue()))
-        .andExpect(MockMvcResultMatchers.jsonPath("$.nama", Matchers.is("REY")))
-        // Generate snippets
-        .andDo(
-            MockMvcRestDocumentation.document(
-                "post/insert", 
-                Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
-                Preprocessors.preprocessResponse(Preprocessors.prettyPrint())
-            )
-        );
+        .andExpect(MockMvcResultMatchers.jsonPath("$.nama", Matchers.is("REY")));
     }
 
     @Test
@@ -84,14 +57,7 @@ class EmployeeControllerTests {
             MockMvcRequestBuilders.get("/employees")
                 .contentType(MediaType.APPLICATION_JSON)
         )
-        .andExpect(MockMvcResultMatchers.status().isOk())
-        // Generate snippets
-        .andDo(
-            MockMvcRestDocumentation.document(
-                "get/all", 
-                Preprocessors.preprocessResponse(Preprocessors.prettyPrint())
-            )
-        );
+        .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
@@ -107,14 +73,7 @@ class EmployeeControllerTests {
         )
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.notNullValue()))
-        .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(id)))
-        // Generate snippets
-        .andDo(
-            MockMvcRestDocumentation.document(
-                "get/by-id", 
-                Preprocessors.preprocessResponse(Preprocessors.prettyPrint())
-            )
-        );
+        .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(id)));
     }
 
     @Test
@@ -131,17 +90,9 @@ class EmployeeControllerTests {
         )
         .andExpect(MockMvcResultMatchers.status().isFound())
         .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.notNullValue()))
-        .andExpect(MockMvcResultMatchers.jsonPath("$.nama", Matchers.is(nama)))
-        // Generate snippets
-        .andDo(
-            MockMvcRestDocumentation.document(
-                "get/by-name",
-                Preprocessors.preprocessResponse(Preprocessors.prettyPrint())
-            )
-        );
+        .andExpect(MockMvcResultMatchers.jsonPath("$.nama", Matchers.is(nama)));
     }
 
-    // Undocumented tests
     @Test
     void insertEmployee_ShouldFail_WhenJsonIsEmpty() throws JsonProcessingException, Exception {
         this.mockMvc.perform(
