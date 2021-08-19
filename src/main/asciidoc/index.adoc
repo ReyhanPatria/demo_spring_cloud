@@ -13,6 +13,9 @@ include::{snippets}/get/all/http-response.adoc[]
 ==== Request example
 include::{snippets}/get/by-id/http-request.adoc[]
 
+=== Path parameters
+include::{snippets}/get/by-id/path-parameters.adoc[]
+
 ==== Response example
 include::{snippets}/get/by-id/http-response.adoc[]
 
@@ -21,8 +24,13 @@ include::{snippets}/get/by-id/http-response.adoc[]
 ==== Request example
 include::{snippets}/get/by-name/http-request.adoc[]
 
+=== Request parameters
+include::{snippets}/get/by-name/request-parameters.adoc[]
+
 ==== Response example
 include::{snippets}/get/by-name/http-response.adoc[]
+
+
 
 == POST
 === Insert employee
@@ -31,3 +39,6 @@ include::{snippets}/post/insert/http-request.adoc[]
 
 ==== Response example
 include::{snippets}/post/insert/http-response.adoc[]
+
+==== Response fields
+include::{snippets}/post/insert/response-fields.adoc[]
