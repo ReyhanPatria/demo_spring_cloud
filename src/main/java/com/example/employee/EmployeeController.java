@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
@@ -75,7 +76,9 @@ public class EmployeeController {
             description = "No employee with provided id was found"
         )
     })
-    public ResponseEntity<EmployeePojo> getEmployeeById(@PathVariable Integer id) {
+    public ResponseEntity<EmployeePojo> getEmployeeById(
+            @ApiParam(value = "Id of employee", example = "1") 
+                @PathVariable Integer id) {
         Optional<Employee> employeeExists = employeeService.getEmployeeById(id);
         if(!employeeExists.isPresent())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -90,13 +93,13 @@ public class EmployeeController {
         response = EmployeePojo.class,
         produces = "application/json"
     )
-    @ApiResponses(value = {
-        @ApiResponse(
-            responseCode = "404",
-            description = "No employee with provided name was found"
-        )
-    })
-    public ResponseEntity<EmployeePojo> getEmployeeByNama(@RequestParam String nama) {
+    @ApiResponse(
+        responseCode = "404",
+        description = "No employee with provided name was found"
+    )
+    public ResponseEntity<EmployeePojo> getEmployeeByNama(
+            @ApiParam(value = "Nama of employee", example = "REY", allowMultiple = false, allowEmptyValue = true) 
+                @RequestParam String nama) {
         Optional<Employee> employeeExists = employeeService.getEmployeeByNama(nama);
         if(!employeeExists.isPresent())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
