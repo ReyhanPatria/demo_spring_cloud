@@ -1,0 +1,4 @@
+maintenance:
+  urls: [
+    "/not-in-maintenance/in-maintenance/*"
+  ]
