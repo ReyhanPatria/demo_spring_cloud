@@ -1,4 +1,6 @@
 maintenance:
   urls: [
-    "/not-in-maintenance/in-maintenance/*"
+    "/not-in-maintenance/in-maintenance/*",
+    "/new-maintenance-endpoint",
+    "/another-maintenance-endpoint"
   ]
