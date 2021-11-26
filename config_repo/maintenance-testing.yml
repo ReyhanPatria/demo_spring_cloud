@@ -3,5 +3,6 @@ maintenance:
   message: "Endpoints is currently unavailable"
   urls: [
     "/not-in-maintenance/in-maintenance",
-    "/another-one"
+    "/another-one",
+    "/and-another-one"
  ]
