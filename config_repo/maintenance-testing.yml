@@ -2,6 +2,6 @@ maintenance:
   code: "MAINTENANCE-001"
   message: "Endpoints is currently unavailable"
   urls: [
-    "/not-in-maintenance/in-maintenance",
-    "/another-one"
+    "/not-in-maintenance/in-maintenance/",
+    "/another-one/"
  ]
