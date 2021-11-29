@@ -2,5 +2,7 @@ maintenance:
   code: "MAINTENANCE-999"
   message: "Maintenance is in progress"
   urls: [
-    "/not-in-maintenance/in-maintenance"
+    "/not-in-maintenance/in-maintenance",
+    "another-one",
+    "and-another-one
  ]
