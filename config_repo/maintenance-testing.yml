@@ -4,5 +4,5 @@ maintenance:
   urls: [
     "/not-in-maintenance/in-maintenance",
     "/another-one",
-    "/and-another-one
+    "/and-another-one"
  ]
