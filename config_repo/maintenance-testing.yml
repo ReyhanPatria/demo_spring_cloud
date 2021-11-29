@@ -1,6 +1,6 @@
 maintenance:
-  code: "MAINTENANCE-001"
+  code: "MAINTENANCE-999"
   message: "Endpoints is currently unavailable"
   urls: [
-    "/not-in-maintenance/in-maintenance"
+    "/not-in-maintenance"
  ]
