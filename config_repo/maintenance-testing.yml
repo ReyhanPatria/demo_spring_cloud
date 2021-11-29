@@ -1,6 +1,6 @@
 maintenance:
-  code: "MAINTENANCE-069"
-  message: "Endpoints are being reconstructed"
+  code: "MAINTENANCE-999"
+  message: "Maintenance is in progress"
   urls: [
     "/not-in-maintenance/in-maintenance"
  ]
